@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.styl']
 })
 export class AppComponent {
-  title = 'demo-ts-ng-todo-list';
+  title = 'TODO List App';
 }
