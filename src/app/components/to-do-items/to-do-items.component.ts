@@ -10,11 +10,11 @@ import {ITEMS} from "../../mock-todo-items";
 export class ToDoItemsComponent implements OnInit {
 
   items = ITEMS;
-  /* toDoItem: ToDoItem = {
-    id: 1,
-    name: "Call Joe",
-    isComplete: false
-  }; */
+  selectedItem: ToDoItem
+
+  onSelect(item: ToDoItem): void {
+    this.selectedItem = item;
+  }
 
   constructor() { }
 

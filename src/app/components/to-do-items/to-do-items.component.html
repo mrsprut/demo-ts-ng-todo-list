@@ -1,13 +1,22 @@
+<div *ngIf="selectedItem !== undefined">
+  <h2>{{selectedItem.name}} details</h2>
+  <div><span>id: </span>{{selectedItem.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedItem.name" placeholder="name"/>
+    </label>
+  </div>
+  <div>
+    <label>is complete:
+      <input type="checkbox" [(ngModel)]="selectedItem.isComplete"/>
+    </label>
+  </div>
+</div>
 <div *ngIf="items.length > 0">
   {{items.length}} {{items.length == 1 ? 'item' : 'items'}}
 </div>
 <ul class="items">
-  <li *ngFor="let toDoItem of items">
+  <li *ngFor="let toDoItem of items" (click)="onSelect(toDoItem)">
       <h2>{{toDoItem.name}} Details</h2>
-      <!--<div><span>id: </span>{{toDoItem.id}}</div>
-      <div><span>name: </span>{{toDoItem.name}}</div>
-      <div>
-        <span>is completed: </span>{{toDoItem.isComplete}}
-      </div>-->
   </li>
 </ul>
