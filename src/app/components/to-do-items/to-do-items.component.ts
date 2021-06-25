@@ -3,6 +3,7 @@ import {ToDoItem} from '../../models/to-do-item';
 import {ITEMS} from "../../mock-todo-items";
 import { TodoItemsService } from '../../services/todo-items.service';
 import {delay} from "rxjs/operators";
+import {error} from "util";
 
 @Component({
   selector: 'app-to-do-items',
@@ -23,9 +24,14 @@ export class ToDoItemsComponent implements OnInit {
   // (The instance of TodoItemsService to the instance of ToDoItemsComponent)
   constructor(private todoItemsService: TodoItemsService) {
     // this.items = todoItemsService.getMockItems();
-    todoItemsService.getMockItemsStream().subscribe(item => {
+    /* todoItemsService.getMockItemsStream().subscribe(item => {
       this.items.unshift(item)
-    })
+    }) */
+    todoItemsService.getRemoteItems().subscribe(
+      items =>
+        items.forEach(item => this.items.unshift(new ToDoItem(item.id, item.title, item.completed))),
+      error => console.log(error)
+    )
   }
 
   ngOnInit() {
