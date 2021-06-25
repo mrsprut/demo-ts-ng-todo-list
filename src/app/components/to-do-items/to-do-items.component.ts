@@ -27,14 +27,14 @@ export class ToDoItemsComponent implements OnInit {
     /* todoItemsService.getMockItemsStream().subscribe(item => {
       this.items.unshift(item)
     }) */
-    todoItemsService.getRemoteItems().subscribe(
+  }
+
+  ngOnInit() {
+    this.todoItemsService.getRemoteItems().pipe(delay(3000)).subscribe(
       items =>
         items.forEach(item => this.items.unshift(new ToDoItem(item.id, item.title, item.completed))),
       error => console.log(error)
     )
-  }
-
-  ngOnInit() {
   }
 
 }
